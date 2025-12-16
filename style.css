@@ -1,0 +1,77 @@
+body {
+    background-color: #1a1b26;
+    color: #c0caf5;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 1.5s ease;
+}
+
+/* 结束时的柔和氛围模式 */
+body.relax-mode {
+    background-color: #13131a; /* 稍微更深一点，对比光效 */
+}
+
+/* 全屏呼吸特效覆盖层 */
+.relax-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    /* 延长了过渡时间到 2s，让特效出现得更缓慢柔和 */
+    transition: opacity 2s ease-in-out;
+    box-shadow: inset 0 0 100px rgba(187, 154, 247, 0.1);
+}
+
+body.relax-mode .relax-overlay {
+    opacity: 1;
+    animation: breathe 5s infinite;
+}
+
+.timer-display {
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.timer-display:hover {
+    color: #7aa2f7;
+}
+
+.btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* 隐藏数字输入框的上下箭头 */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
